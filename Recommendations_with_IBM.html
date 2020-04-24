@@ -14171,7 +14171,7 @@ The 3 most similar users to user 46 are: [4201, 23, 3782]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_article_names</span><span class="p">(</span><span class="n">article_ids</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">):</span>
@@ -14235,16 +14235,16 @@ The 3 most similar users to user 46 are: [4201, 23, 3782]
     
     <span class="n">similar_users</span> <span class="o">=</span> <span class="n">find_similar_users</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
     <span class="n">seen_ids</span><span class="p">,</span> <span class="n">seen_names</span> <span class="o">=</span> <span class="n">get_user_articles</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
-    <span class="n">recs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">recs</span> <span class="o">=</span> <span class="p">[]</span>
     
     <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">similar_users</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">recs</span><span class="p">)</span><span class="o">&lt;</span> <span class="n">m</span><span class="p">:</span>
             <span class="n">rec_ids</span><span class="p">,</span> <span class="n">rec_names</span> <span class="o">=</span> <span class="n">get_user_articles</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
-            <span class="n">recs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">rec_ids</span><span class="p">)</span>
-            <span class="n">recs</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">recs</span><span class="p">)[:</span><span class="n">m</span><span class="p">]</span>
+            <span class="n">rec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">rec_ids</span><span class="p">,</span> <span class="n">seen_ids</span><span class="p">)</span>
+            <span class="n">recs</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">rec</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">break</span>
-    
+    <span class="n">recs</span><span class="o">=</span><span class="n">recs</span><span class="p">[:</span><span class="n">m</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">recs</span> <span class="c1"># return your recommendations for this user_id    </span>
 </pre></div>
 
@@ -14255,7 +14255,7 @@ The 3 most similar users to user 46 are: [4201, 23, 3782]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Check Results</span>
@@ -14272,22 +14272,22 @@ The 3 most similar users to user 46 are: [4201, 23, 3782]
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[23]:</div>
+    <div class="prompt output_prompt">Out[35]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&#39;classify tumors with machine learning&#39;,
- &#39;welcome to pixiedust&#39;,
- &#39;uci ml repository: chronic kidney disease data set&#39;,
- &#39;time series prediction using recurrent neural networks (lstms)&#39;,
- &#39;finding optimal locations of new store using decision optimization&#39;,
- &#39;introduction to market basket analysis in\xa0python&#39;,
- &#39;tidyverse practice: mapping large european cities&#39;,
- &#39;python if statements explained (python for data science basics #4)&#39;,
- &#39;python for loops explained (python for data science basics #5)&#39;,
- &#39;introducing ibm watson studio &#39;]</pre>
+<pre>[&#39;analyze energy consumption in buildings&#39;,
+ &#39;analyze accident reports on amazon emr spark&#39;,
+ &#39;520    using notebooks with pixiedust for fast, flexi...\nName: title, dtype: object&#39;,
+ &#39;1448    i ranked every intro to data science course on...\nName: title, dtype: object&#39;,
+ &#39;data tidying in data science experience&#39;,
+ &#39;airbnb data for analytics: vancouver listings&#39;,
+ &#39;recommender systems: approaches &amp; algorithms&#39;,
+ &#39;airbnb data for analytics: mallorca reviews&#39;,
+ &#39;analyze facebook data using ibm watson and watson studio&#39;,
+ &#39;a tensorflow regression model to predict house values&#39;]</pre>
 </div>
 
 </div>
@@ -14298,7 +14298,7 @@ The 3 most similar users to user 46 are: [4201, 23, 3782]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Test your functions here - No need to change this code - just run this cell</span>
@@ -14350,7 +14350,7 @@ The 3 most similar users to user 46 are: [4201, 23, 3782]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">user_item</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">user_item</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="s1">&#39;similarity&#39;</span><span class="p">)</span>
@@ -14366,7 +14366,7 @@ The 3 most similar users to user 46 are: [4201, 23, 3782]
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[25]:</div>
+    <div class="prompt output_prompt">Out[29]:</div>
 
 
 
@@ -14455,7 +14455,7 @@ The 3 most similar users to user 46 are: [4201, 23, 3782]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[89]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_top_sorted_users</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">user_item</span><span class="o">=</span><span class="n">user_item</span><span class="p">):</span>
@@ -14517,15 +14517,23 @@ The 3 most similar users to user 46 are: [4201, 23, 3782]
 <span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="n">neighbor_ids</span> <span class="o">=</span> <span class="n">get_top_sorted_users</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-    <span class="n">recs_new</span><span class="o">=</span><span class="nb">set</span><span class="p">()</span>
+    <span class="n">seen_ids</span><span class="p">,</span> <span class="n">seen_names</span> <span class="o">=</span> <span class="n">get_user_articles</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+    <span class="n">sorted_articles</span> <span class="o">=</span> <span class="n">get_top_article_ids</span><span class="p">(</span><span class="mi">1056</span><span class="p">)</span>
+    <span class="n">top_articles</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sorted_articles</span><span class="p">]</span>
+    
+    <span class="n">recs_new</span><span class="o">=</span> <span class="p">[]</span>
     
     <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="n">neighbor_ids</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">recs_new</span><span class="p">)</span><span class="o">&lt;</span> <span class="n">m</span><span class="p">:</span>
             <span class="n">rec_ids</span><span class="p">,</span> <span class="n">rec_names</span> <span class="o">=</span> <span class="n">get_user_articles</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
-            <span class="n">recs_new</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">rec_ids</span><span class="p">)</span>
-            <span class="n">recs</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">recs_new</span><span class="p">)[:</span><span class="n">m</span><span class="p">]</span>
+            <span class="n">rec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">rec_ids</span><span class="p">,</span> <span class="n">seen_ids</span><span class="p">)</span>
+            <span class="n">sorted_rec</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">top_articles</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">rec</span><span class="p">]</span>
+            <span class="n">recs_new</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sorted_rec</span><span class="p">)</span>
+            
         <span class="k">else</span><span class="p">:</span>
             <span class="k">break</span>
+   
+    <span class="n">recs</span><span class="o">=</span><span class="n">recs_new</span><span class="p">[:</span><span class="n">m</span><span class="p">]</span>
     <span class="n">rec_names</span> <span class="o">=</span> <span class="n">get_article_names</span><span class="p">(</span><span class="n">recs</span><span class="p">)</span>
     
     <span class="k">return</span> <span class="n">recs</span><span class="p">,</span> <span class="n">rec_names</span>
@@ -14538,7 +14546,7 @@ The 3 most similar users to user 46 are: [4201, 23, 3782]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[90]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Quick spot check - don&#39;t change this code - just use it to test your functions</span>
@@ -14565,10 +14573,10 @@ The 3 most similar users to user 46 are: [4201, 23, 3782]
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>The top 10 recommendations for user 20 are the following article ids:
-[&#39;1364.0&#39;, &#39;1160.0&#39;, &#39;1278.0&#39;, &#39;205.0&#39;, &#39;164.0&#39;, &#39;1024.0&#39;, &#39;1152.0&#39;, &#39;1409.0&#39;, &#39;1360.0&#39;, &#39;939.0&#39;]
+[&#39;1330.0&#39;, &#39;1427.0&#39;, &#39;1364.0&#39;, &#39;1170.0&#39;, &#39;1162.0&#39;, &#39;1304.0&#39;, &#39;1351.0&#39;, &#39;1160.0&#39;, &#39;1354.0&#39;, &#39;1368.0&#39;]
 
 The top 10 recommendations for user 20 are the following article names:
-[&#39;predicting churn with the spss random tree algorithm&#39;, &#39;pixieapp for outlier detection&#39;, &#39;analyze accident reports on amazon emr spark&#39;, &#39;learn tensorflow and deep learning together and now!&#39;, &#34;a beginner&#39;s guide to variational methods&#34;, &#39;deep learning from scratch i: computational graphs&#39;, &#39;uci: red wine quality&#39;, &#39;airbnb data for analytics: venice reviews&#39;, &#39;using deep learning to reconstruct high-resolution audio&#39;, &#39;develop a scala spark model on chicago building violations&#39;]
+[&#39;apache spark lab, part 1: basic concepts&#39;, &#39;predicting churn with the spss random tree algorithm&#39;, &#39;analyze energy consumption in buildings&#39;, &#39;use xgboost, scikit-learn &amp; ibm watson machine learning apis&#39;, &#39;putting a human face on machine learning&#39;, &#39;gosales transactions for logistic regression model&#39;, &#39;insights from new york car accident reports&#39;, &#39;model bike sharing data with spss&#39;, &#39;analyze accident reports on amazon emr spark&#39;, &#39;movie recommender system with spark machine learning&#39;]
 </pre>
 </div>
 </div>
@@ -15398,7 +15406,7 @@ The top 10 recommendations for user 20 are the following article names:
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>As we increase numbr of latent features, the model has a tendency of overpredicting. This is because 1) there are only 20 users that overlap in both the training and testing dataset. 2) The measuring metrics is either 1 or 0, thus the results could be biased. 
 In this circumstance, it makes sense to use fewer latent features.
-Without changing the business mode of IBM such as asking users to rate the article or ask the users whether they like the article, another measuring metrics is to track number of cookies that has visited a particular article, since </strong></p>
+Without changing the business mode of IBM such as asking users to rate the article or ask the users whether they like the article, another measuring metrics is to track number of cookies that has visited a particular article, since not everyone reading the article has responded.</strong></p>
 
 </div>
 </div>
@@ -15421,11 +15429,44 @@ Without changing the business mode of IBM such as asking users to rate the artic
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[82]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">call</span>
 <span class="n">call</span><span class="p">([</span><span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;nbconvert&#39;</span><span class="p">,</span> <span class="s1">&#39;Recommendations_with_IBM.ipynb&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[82]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
     </div>
